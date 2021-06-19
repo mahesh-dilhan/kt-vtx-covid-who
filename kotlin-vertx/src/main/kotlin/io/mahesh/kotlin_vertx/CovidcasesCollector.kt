@@ -38,7 +38,12 @@ class CovidcasesCollector : AbstractVerticle() {
   fun list(routingContext: RoutingContext){
     val list = JsonArray()
     val jsonObject = JsonObject()
-    
+    data.forEach { (k: String?, v: Country) ->
+      list.add(
+        JsonObject()
+          .put(k, v.cases).toString()
+      )
+    }
   }
 
   fun updateCountryStats(aLong : Long){

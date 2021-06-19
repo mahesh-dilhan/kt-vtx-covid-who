@@ -44,6 +44,8 @@ class CovidcasesCollector : AbstractVerticle() {
           .put(k, v.cases).toString()
       )
     }
+    routingContext.response()
+      .putHeader("Content-Type", "application/json")
   }
 
   fun updateCountryStats(aLong : Long){

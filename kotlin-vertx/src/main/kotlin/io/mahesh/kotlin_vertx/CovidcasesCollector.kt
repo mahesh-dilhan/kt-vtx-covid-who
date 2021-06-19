@@ -2,7 +2,9 @@ package io.mahesh.kotlin_vertx
 
 import io.vertx.core.AbstractVerticle
 import io.vertx.core.Promise
+import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
+import io.vertx.ext.web.RoutingContext
 import org.slf4j.LoggerFactory
 import java.util.*
 
@@ -31,6 +33,12 @@ class CovidcasesCollector : AbstractVerticle() {
           startPromise.fail(http.cause());
         }
       }
+  }
+
+  fun list(routingContext: RoutingContext){
+    val list = JsonArray()
+    val jsonObject = JsonObject()
+    
   }
 
   fun updateCountryStats(aLong : Long){

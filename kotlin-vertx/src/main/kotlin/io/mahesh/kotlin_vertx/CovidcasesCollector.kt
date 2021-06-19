@@ -46,6 +46,7 @@ class CovidcasesCollector : AbstractVerticle() {
     }
     routingContext.response()
       .putHeader("Content-Type", "application/json")
+      .setStatusCode(200)
   }
 
   fun updateCountryStats(aLong : Long){

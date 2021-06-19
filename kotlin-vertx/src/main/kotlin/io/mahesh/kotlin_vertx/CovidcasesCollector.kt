@@ -34,7 +34,8 @@ class CovidcasesCollector : AbstractVerticle() {
   }
 
   fun updateCountryStats(aLong : Long){
-    
+    val idx = randomcountry.nextInt(countries.size)
+    val name = countries[idx]
   }
 
    fun payload(cntry: Country): JsonObject? {

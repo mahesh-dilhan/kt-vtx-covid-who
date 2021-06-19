@@ -1,7 +1,9 @@
 package io.mahesh.kotlin_vertx
 
 import io.vertx.core.AbstractVerticle
+import io.vertx.core.Handler
 import io.vertx.core.Promise
+import io.vertx.core.http.HttpServer
 import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.Router
@@ -26,6 +28,11 @@ class CovidcasesCollector : AbstractVerticle() {
     vertx.createHttpServer()
       .requestHandler(router)
       .listen(PORT)
+      .onSuccess(Handler { ok: HttpServer? ->
+        logger.info("Running......server")
+        startPromise.complete()
+      })
+      .onFailure(Handler { cause: Throwable? -> startPromise.fail(cause) })
   }
 
   fun list(routingContext: RoutingContext){

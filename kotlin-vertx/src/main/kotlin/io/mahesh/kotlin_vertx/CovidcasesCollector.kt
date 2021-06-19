@@ -2,6 +2,7 @@ package io.mahesh.kotlin_vertx
 
 import io.vertx.core.AbstractVerticle
 import io.vertx.core.Promise
+import io.vertx.core.json.JsonObject
 import org.slf4j.LoggerFactory
 import java.util.*
 
@@ -32,6 +33,11 @@ class CovidcasesCollector : AbstractVerticle() {
       }
   }
 
+   fun payload(cntry: Country): JsonObject? {
+    return JsonObject()
+      .put("name", cntry.name)
+      .put("cases", cntry.cases)
+  }
 
 }
 data class Country(var name: String, var cases: Int)

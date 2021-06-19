@@ -32,6 +32,7 @@ dependencies {
   implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
   implementation("io.vertx:vertx-web")
   implementation("io.vertx:vertx-lang-kotlin")
+  implementation("ch.qos.logback:logback-classic:1.2.3")
   implementation(kotlin("stdlib-jdk8"))
   testImplementation("io.vertx:vertx-junit5")
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")

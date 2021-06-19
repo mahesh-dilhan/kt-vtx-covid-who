@@ -11,7 +11,7 @@ class CovidcasesCollector : AbstractVerticle() {
   private val PORT = System.getProperty("HTTP_PORT", "8888").toIntOrNull() ?: 8888
   private val countries = mutableListOf("USA", "SL", "IND", "PK", "AUS")
   private val randomcountry = Random()
-  
+
 
 
   override fun start(startPromise: Promise<Void>) {
@@ -31,4 +31,7 @@ class CovidcasesCollector : AbstractVerticle() {
         }
       }
   }
+
+
 }
+data class Country(var name: String, var cases: Int)

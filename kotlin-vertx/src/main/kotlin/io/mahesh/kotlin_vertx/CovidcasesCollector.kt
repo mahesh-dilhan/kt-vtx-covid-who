@@ -4,6 +4,7 @@ import io.vertx.core.AbstractVerticle
 import io.vertx.core.Promise
 import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
+import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
 import org.slf4j.LoggerFactory
 import java.util.*
@@ -18,7 +19,10 @@ class CovidcasesCollector : AbstractVerticle() {
   private val data = mutableMapOf<String, Country>()
 
   override fun start(startPromise: Promise<Void>) {
-    
+    vertx.setPeriodic(1000) { aLong: Long? -> updateCountryStats(aLong!!) }
+
+    val router = Router.router(vertx)
+    router["/list"].handler { routingContext: RoutingContext? -> list(routingContext!!) }
   }
 
   fun list(routingContext: RoutingContext){

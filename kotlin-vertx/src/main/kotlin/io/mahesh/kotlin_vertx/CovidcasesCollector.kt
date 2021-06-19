@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory
 
 class CovidcasesCollector : AbstractVerticle() {
   private val logger = LoggerFactory.getLogger("io.mahesh.kotlin_vertx.CovidcasesCollector")
+  private val PORT = System.getProperty("HTTP_PORT", "8888").toIntOrNull() ?: 8888
 
   override fun start(startPromise: Promise<Void>) {
     vertx

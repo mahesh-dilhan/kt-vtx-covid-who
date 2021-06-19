@@ -33,6 +33,10 @@ class CovidcasesCollector : AbstractVerticle() {
       }
   }
 
+  fun updateCountryStats(aLong : Long){
+    
+  }
+
    fun payload(cntry: Country): JsonObject? {
     return JsonObject()
       .put("name", cntry.name)

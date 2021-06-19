@@ -23,6 +23,9 @@ class CovidcasesCollector : AbstractVerticle() {
 
     val router = Router.router(vertx)
     router["/list"].handler { routingContext: RoutingContext? -> list(routingContext!!) }
+    vertx.createHttpServer()
+      .requestHandler(router)
+      .listen(PORT)
   }
 
   fun list(routingContext: RoutingContext){

@@ -13,7 +13,7 @@ class CovidcasesCollector : AbstractVerticle() {
   private val countries = mutableListOf("USA", "SL", "IND", "PK", "AUS")
   private val randomcountry = Random()
 
-  private val data: Map<String, Country> = mutableMapOf()
+  private val data = mutableMapOf<String, Country>()
 
   override fun start(startPromise: Promise<Void>) {
     vertx
@@ -37,7 +37,10 @@ class CovidcasesCollector : AbstractVerticle() {
     val idx = randomcountry.nextInt(countries.size)
     val name = countries[idx]
     val postivecases = randomcountry.nextInt(1000)
-    val (name1, cases) = Country(name, postivecases)
+    val cntry = Country(name, postivecases)
+    data.put(name, cntry)
+    logger.info("{}", cntry.cases.toString() + "-" + cntry.name)
+    vertx.eventBus().publish("who.portal", payload(cntry))
   }
 
    fun payload(cntry: Country): JsonObject? {
